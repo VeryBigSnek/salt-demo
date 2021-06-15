@@ -6,3 +6,7 @@ echo "deb [signed-by=/usr/share/keyrings/salt-archive-keyring.gpg] https://repo.
 
 apt-get -y update
 apt-get -y install salt-master salt-ssh salt-api git
+
+git clone https://github.com/VeryBigSnek/salt-demo.git
+
+ln -s $PWD/salt-demo/salt /srv/salt
