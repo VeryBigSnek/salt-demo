@@ -1,4 +1,4 @@
-install stack:
+install_stack:
   pkg.installed:
     - name nginx
     - pkgs:
