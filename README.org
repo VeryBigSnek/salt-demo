@@ -1,0 +1,9 @@
+#+TITLE: Readme
+
+
+* Setup minions
+To setup any minions run the following command with elevated priviledges.
+`sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+
+* rsyslog
+The address of the rsyslog server should be specified in rsyslog/rsyslog.conf before deploying.
