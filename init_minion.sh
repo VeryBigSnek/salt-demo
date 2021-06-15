@@ -7,5 +7,5 @@ echo "deb [signed-by=/usr/share/keyrings/salt-archive-keyring.gpg] https://repo.
 apt-get -y update
 apt-get -y install salt-minion salt-ssh salt-api
 
-echo 'master: 10.0.0.100' >> /etc/salt/minion
+echo 'master: 10.0.6.60' >> /etc/salt/minion
 systemctl restart salt-minion
