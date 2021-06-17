@@ -1,11 +1,39 @@
-install-web:
+nginx:
   pkg.installed:
     - name: nginx
+  service.running:
+    - name: nginx
+    - pkg: nginx
+    - enable: True
+    - reload: True
+    - watch:
+        - pkg: nginx
+        - file: /etc/nginx/nginx.conf
+        - file: /etc/nginx/sites-available/default
+
+php:
+  pkg.installed:
+    - name: php7.2-fpm
     - pkgs:
-        - nginx
         - php7.2-fpm
         - php7.2-mysql
-        - mariadb-server
+  service.running:
+    - name: php7.2-fpm
+    - pkg: php7.2-fpm
+    - enable: True
+    - restart: True
+    - watch:
+        - pkg: php7.2-fpm
+        - file: /etc/php/7.2/fpm/php-fpm.conf
+
+mariadb:
+  pkg.installed:
+    - name: mariadb-server
+  service.running:
+    - name: mariadb
+    - pkg: mariadb-server
+    - enable: True
+    - restart: True
 
 nginx config:
   file:
@@ -33,31 +61,3 @@ php-fpm config:
     - user: root
     - group: root
     - mode: 644
-
-nginx:
-  service.running:
-    - name: nginx
-    - pkg: nginx
-    - enable: True
-    - reload: True
-    - watch:
-        - pkg: nginx
-        - file: /etc/nginx/nginx.conf
-        - file: /etc/nginx/sites-available/default
-
-php:
-  service.running:
-    - name: php7.2-fpm
-    - pkg: php7.2-fpm
-    - enable: True
-    - restart: True
-    - watch:
-        - pkg: php7.2-fpm
-        - file: /etc/php/7.2/fpm/php-fpm.conf
-
-mariadb:
-  service.running:
-    - name: mariadb
-    - pkg: mariadb-server
-    - enable: True
-    - restart: True
